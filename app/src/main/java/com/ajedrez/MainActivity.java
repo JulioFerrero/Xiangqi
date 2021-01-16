@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<ArrayList<Piezas>> list = new Java1().start();
-    int oldType = 0;
+    Piezas oldType;
     int oldV = 0;
     int oldH = 0;
 
@@ -47,14 +47,20 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(view.getContext(), "Button clicked index = " + id_, Toast.LENGTH_SHORT).show();
 
                         if (list.get(finalJ).get(finalI).getTipoPieza() == 8){
-                            list.get(finalJ).get(finalI).setTipoPieza(oldType);
+                            Piezas remove = list.get(finalJ).get(finalI);
+                            list.get(finalJ).remove(finalI);
+
+                            list.get(finalJ).add(finalI,oldType);
+                            //list.get(finalJ).get(finalI).setTipoPieza(oldType);
+                            list.get(oldV).remove(oldH);
+                            list.get(oldV).add(oldH,remove);
                             list.get(oldV).get(oldH).setTipoPieza(0);
                             list = new clean(list).eraseEights();
                         }
 
                         list = new clean(list).eraseEights();
                         list = new Movimientos(list, finalJ, finalI).movimientos();
-                        oldType = list.get(finalJ).get(finalI).getTipoPieza();
+                        oldType = list.get(finalJ).get(finalI);
                         oldV = finalJ;
                         oldH = finalI;
                         Draw(list);
