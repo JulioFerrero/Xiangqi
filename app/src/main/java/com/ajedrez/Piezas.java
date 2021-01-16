@@ -1,23 +1,21 @@
 package com.ajedrez;
 
 public class Piezas {
-    private final boolean Color;
+    private final Boolean Color;
     private int TipoPieza;
-    private int X;
-    private int Y;
+    private boolean eat;
 
-    public Piezas(boolean Color, int TipoPieza,int X, int Y) {
+    public Piezas(Boolean Color, int TipoPieza, boolean eat) {
         this.Color=Color;
         this.TipoPieza=TipoPieza;
-        this.X=X;
-        this.Y=Y;
+        this.eat=eat;
     }
 
     public int getTipoPieza() {
         return TipoPieza;
     }
 
-    public boolean isColor() {
+    public Boolean isColor() {
         return Color;
     }
 
@@ -25,19 +23,11 @@ public class Piezas {
         TipoPieza = tipoPieza;
     }
 
-    public int getX() {
-        return X;
+    public boolean isEat() {
+        return eat;
     }
 
-    public void setX(int x) {
-        X = x;
-    }
-
-    public int getY() {
-        return Y;
-    }
-
-    public void setY(int y) {
-        Y = y;
+    public void setEat(boolean eat) {
+        this.eat = eat;
     }
 }

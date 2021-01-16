@@ -9,19 +9,19 @@ Alfil: 4
 Rey:5
 Cañon: 6
 Peon: 7
-Movimiento: 8
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Movimientos {
     int V;
     int H;
-    int Piezas;
+    int TypePieza;
+    Boolean ColorPieza;
+    boolean onlyOne;
     List<ArrayList<Piezas>> list;
-    int typePieza = 8;
+    Boolean typePieza = true;
 
     public Movimientos(List<ArrayList<com.ajedrez.Piezas>> list, int V, int H) {
         this.V=V;
@@ -31,44 +31,70 @@ public class Movimientos {
 
     public List<ArrayList<Piezas>> movimientos() {
 
-        Piezas = list.get(V).get(H).getTipoPieza();
+        TypePieza = list.get(V).get(H).getTipoPieza();
+        ColorPieza = list.get(V).get(H).isColor();
+
 
         //Cañon
-        if(Piezas == 6){
+        if(TypePieza == 6){
             for(int v = 0; v < 10;v++){
                 for(int h = 0; h < 9;h++){
                     int forCanon;
-                        list.get(V).get(H).setTipoPieza(6);
+                    list.get(V).get(H).setTipoPieza(6);
                     //Horizontal Derecha
+                    onlyOne = true;
                     for(forCanon = H +1 ; forCanon <= 8;forCanon++ ){
-                        if (list.get(V).get(forCanon).getTipoPieza() != 0){
+                        if (list.get(V).get(forCanon).isColor() == ColorPieza){
                             break;
                         }
-                        list.get(V).get(forCanon).setTipoPieza(typePieza);
+                        if (onlyOne) {
+                            list.get(V).get(forCanon).setEat(typePieza);
+                            if (list.get(V).get(forCanon).isColor() != ColorPieza && list.get(V).get(forCanon).isColor() != null){
+                                onlyOne = false;
+                        }
+                        }
                     }
 
                     //Horizontal Izquierda
+                    onlyOne = true;
                     for(forCanon = H -1 ; forCanon >= 0; forCanon-- ){
-                        if (list.get(V).get(forCanon).getTipoPieza() != 0){
+                        if (list.get(V).get(forCanon).isColor() == ColorPieza){
                             break;
                         }
-                        list.get(V).get(forCanon).setTipoPieza(typePieza);
+                        if (onlyOne) {
+                            list.get(V).get(forCanon).setEat(typePieza);
+                            if (list.get(V).get(forCanon).isColor() != ColorPieza && list.get(V).get(forCanon).isColor() != null){
+                                onlyOne = false;
+                            }
+                        }
                     }
 
                     //Vertical Arriba
+                    onlyOne = true;
                     for(forCanon = V -1 ; forCanon >= 0; forCanon-- ){
-                        if (list.get(forCanon).get(H).getTipoPieza() != 0){
+                        if (list.get(forCanon).get(H).isColor() == ColorPieza){
                             break;
                         }
-                        list.get(forCanon).get(H).setTipoPieza(typePieza);
+                        if (onlyOne) {
+                            list.get(forCanon).get(H).setEat(typePieza);
+                            if (list.get(forCanon).get(H).isColor() != ColorPieza && list.get(forCanon).get(H).isColor() != null){
+                                onlyOne = false;
+                            }
+                        }
                     }
 
                     //Vertical Abajo
+                    onlyOne = true;
                     for(forCanon = V +1 ; forCanon <= 9; forCanon++ ){
-                        if (list.get(forCanon).get(H).getTipoPieza() != 0){
+                        if (list.get(forCanon).get(H).isColor() == ColorPieza){
                             break;
                         }
-                        list.get(forCanon).get(H).setTipoPieza(typePieza);
+                        if (onlyOne) {
+                            list.get(forCanon).get(H).setEat(typePieza);
+                            if (list.get(forCanon).get(H).isColor() != ColorPieza && list.get(forCanon).get(H).isColor() != null){
+                                onlyOne = false;
+                            }
+                        }
                     }
                 }
             }

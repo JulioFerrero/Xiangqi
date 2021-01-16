@@ -46,19 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(view.getContext(), "Button clicked index = " + id_, Toast.LENGTH_SHORT).show();
 
-                        if (list.get(finalJ).get(finalI).getTipoPieza() == 8){
+                        if (list.get(finalJ).get(finalI).isEat()){
                             Piezas remove = list.get(finalJ).get(finalI);
                             list.get(finalJ).remove(finalI);
-
                             list.get(finalJ).add(finalI,oldType);
-                            //list.get(finalJ).get(finalI).setTipoPieza(oldType);
                             list.get(oldV).remove(oldH);
                             list.get(oldV).add(oldH,remove);
                             list.get(oldV).get(oldH).setTipoPieza(0);
-                            list = new clean(list).eraseEights();
+                            list = new clean(list).eraseEat();
                         }
 
-                        list = new clean(list).eraseEights();
+                        list = new clean(list).eraseEat();
                         list = new Movimientos(list, finalJ, finalI).movimientos();
                         oldType = list.get(finalJ).get(finalI);
                         oldV = finalJ;
@@ -77,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
                 ImageView myButton = findViewById(Integer.parseInt(i + "" + j));
                 int Piezaif = list.get(i).get(j).getTipoPieza();
-                boolean PiezaColor = list.get(i).get(j).isColor();
+                Boolean PiezaColor = list.get(i).get(j).isColor();
+                Boolean Eatif = list.get(i).get(j).isEat();
 
                 if (Piezaif == 0) {
                     myButton.setImageResource(R.drawable.ic_cruz);
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         myButton.setImageResource(R.drawable.rp);
                     }
                 }
-                if (Piezaif == 8) {
+                if (Eatif) {
                     myButton.setImageResource(R.drawable.ic_cruzmovimiento);
                 }
             }
