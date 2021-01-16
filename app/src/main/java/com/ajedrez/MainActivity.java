@@ -2,7 +2,6 @@ package com.ajedrez;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +14,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<ArrayList<Piezas>> list = new Java1().start();
+    int oldType = 0;
+    int oldV = 0;
+    int oldH = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -44,7 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(view.getContext(), "Button clicked index = " + id_, Toast.LENGTH_SHORT).show();
 
+                        if (list.get(finalJ).get(finalI).getTipoPieza() == 8){
+                            list.get(finalJ).get(finalI).setTipoPieza(oldType);
+                            list.get(oldV).get(oldH).setTipoPieza(0);
+                            list = new clean(list).eraseEights();
+                        }
+
+                        list = new clean(list).eraseEights();
                         list = new Movimientos(list, finalJ, finalI).movimientos();
+                        oldType = list.get(finalJ).get(finalI).getTipoPieza();
+                        oldV = finalJ;
+                        oldH = finalI;
                         Draw(list);
                     }
                 });
