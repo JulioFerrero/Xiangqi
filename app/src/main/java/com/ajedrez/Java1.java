@@ -146,24 +146,4 @@ public class Java1 {
 
         return V;
     }
-
-    public Piezas getObjectPieza(int j, int i, List<ArrayList<Piezas>> V){
-
-        int j1 = -1;
-        int i1 = -1;
-
-        for (ArrayList<Piezas> obj : V) {
-            j1++;
-            if (j == j1){
-                for (Piezas job : obj) {
-                    i1++;
-                    if(i == i1){
-                        return job;
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
 }
