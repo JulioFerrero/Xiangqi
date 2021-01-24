@@ -1,5 +1,5 @@
 <div align=center>
-  <h1>Ajedrez</h1>
+  <h1>Xiangqi</h1>
   <p>This is what happens when you have no idea of Chinese chess or android</p>
   <img alt="Android" src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
   </br></br>
